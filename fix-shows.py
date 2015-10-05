@@ -7,16 +7,21 @@ for show in os.listdir(os.getcwd()):
 	if os.path.isdir(show) and not matchShow:
 
 		splitnewname = show.split('.')
-
-		showName = "(active)"
 		season = ""
+		
+		counter = 0
 
 		for textstr in splitnewname:
 			matchSeason = re.match('S\d\dE\d\d',textstr)
 			matchYear = re.match('\d\d\d\d',textstr)		
 
 			if not matchSeason and not matchYear:
-				showName += " " + textstr
+				if counter == 0:
+					showName = textstr
+				else:
+					showName += " " + textstr
+				
+				counter++
 
 			if matchSeason:
 				season = textstr[1:-3]
