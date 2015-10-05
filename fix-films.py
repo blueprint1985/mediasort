@@ -4,7 +4,9 @@ fileexts = ["mp4", "avi", "srt"]
 
 for film in os.listdir(os.getcwd()):
 
-	if os.path.isdir(film):
+	matchFilm = re.match('Films',show)	
+
+	if os.path.isdir(film) and not matchFilm:
 
 		newname = film.split(' (')[0]
 		os.rename(film, newname)
@@ -19,7 +21,7 @@ for film in os.listdir(os.getcwd()):
 
 				if fileext in fileexts:
 					
-					newfile = os.path.abspath(film) + "/" + newname + "." + fileext
+					newfile = os.path.abspath(film) + "/Films/" + newname + "." + fileext
 					os.rename(oldfile, newfile)
 
 				else:
