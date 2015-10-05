@@ -45,4 +45,4 @@ for show in os.listdir(os.getcwd()):
 		os.rename(oldfile, newfile)
 		shutil.rmtree(show)
 
-		print(newname + ": Klart")
+		print(newname + ": Done")
