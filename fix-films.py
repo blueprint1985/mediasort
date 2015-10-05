@@ -43,4 +43,4 @@ for film in os.listdir(os.getcwd()):
 
 			os.rename(film, checksequel[0])
 
-		print(newname + ": Klart")
+		print(newname + ": Done")
