@@ -2,7 +2,7 @@ import os, sys, shutil, re
 
 for show in os.listdir(os.getcwd()):
 
-	matchShow = re.match('Serier',show)	
+	matchShow = re.match('TV-shows',show)	
 
 	if os.path.isdir(show) and not matchShow:
 
@@ -24,7 +24,7 @@ for show in os.listdir(os.getcwd()):
 				season = "Season " + season
 				break
 
-		seasonpath = os.getcwd() + "/Serier/" + showName + "/" + season
+		seasonpath = os.getcwd() + "/TV-shows/" + showName + "/" + season
 
 		if not os.path.exists(seasonpath): 
 			os.makedirs(seasonpath)
