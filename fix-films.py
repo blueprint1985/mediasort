@@ -1,27 +1,32 @@
-import os, sys, shutil
+import os, sys, shutil, re
 
 fileexts = ["mp4", "avi", "srt"]
 
 for film in os.listdir(os.getcwd()):
 
-	matchFilm = re.match('Films',show)	
+	matchFilm = re.match('Filmer',film)	
 
 	if os.path.isdir(film) and not matchFilm:
 
 		newname = film.split(' (')[0]
+		newpath = os.getcwd() + "/Filmer/" + newname
+
+		if not os.path.exists(newpath): 
+			os.makedirs(newpath)
+
 		os.rename(film, newname)
 		film = newname
 
 		for filename in os.listdir(os.path.abspath(film)):
-
-			if not os.path.isdir(filename):
+			
+			if not os.path.isdir(os.path.abspath(film) + "/" + filename):
 
 				fileext = filename.split('.')[-1]
 				oldfile = os.path.abspath(film) + "/" + filename
 
 				if fileext in fileexts:
 					
-					newfile = os.path.abspath(film) + "/Films/" + newname + "." + fileext
+					newfile = os.getcwd() + "/Filmer/" + newname + "/" + newname + "." + fileext
 					os.rename(oldfile, newfile)
 
 				else:
@@ -30,7 +35,7 @@ for film in os.listdir(os.getcwd()):
 
 			else:
 
-				shutil.rmtree(filename)
+				shutil.rmtree(os.path.abspath(film) + "/" + filename)
 
 		checksequel = film.split(' - ')
 
@@ -43,6 +48,8 @@ for film in os.listdir(os.getcwd()):
 					checksequel[0] = abbrev[1]
 					break
 
-			os.rename(film, checksequel[0])
+			os.rename("/Filmer/" + film, checksequel[0])
 
-		print(newname + ": Done")
+		shutil.rmtree(film)
+
+		print(newname + ": Klart")
